@@ -5,6 +5,8 @@
 
 package net.javaguides.ordermanagement.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.nashorn.internal.parser.JSONParser;
 import lombok.SneakyThrows;
 import net.javaguides.ordermanagement.dao.ItemDAO;
 import net.javaguides.ordermanagement.dao.OrderDAO;
@@ -52,7 +54,8 @@ public class OrderServlet extends HttpServlet {
 
     private void showOrderForm(HttpServletRequest request, HttpServletResponse response) throws Throwable {
         RequestDispatcher dispatcher = request.getRequestDispatcher("Order.jsp");
-        request.setAttribute("items", ItemDAO.getItemDao().selectAllItems());
+        ObjectMapper mapper = new ObjectMapper();
+        request.setAttribute("items", mapper.writeValueAsString(ItemDAO.getItemDao().selectAllItems()));
         dispatcher.forward(request, response);
     }
 

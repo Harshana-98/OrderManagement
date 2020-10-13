@@ -17,10 +17,10 @@ public class DaoConnection {
 
     private DaoConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String JDBC_CONNECTION = "jdbc:mysql://localhost:3306/resturantsystem?useSSL=false";
             String JDBC_USERNAME = "root";
-            String JDBC_PASSWORD = "";
+            String JDBC_PASSWORD = "1234";
             connection = DriverManager.getConnection(JDBC_CONNECTION, JDBC_USERNAME, JDBC_PASSWORD);
         } catch (SQLException | ClassNotFoundException e) {
             throw new OrderManagementException("Error connecting to the database", e);
